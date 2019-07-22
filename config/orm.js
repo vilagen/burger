@@ -1,6 +1,7 @@
 var connection = require("./connection.js");
 
 var orm = {
+    // function to select all values in burger table.
     selectAll: function(){
         let queryString = "SELECT * FROM  burgers";
         connection.query(queryString, function(err, res){
@@ -8,6 +9,7 @@ var orm = {
             console.log(result);
          });
     },
+    // function to insert a new burger column
     insertOne: function(burgerName, isDevoured){
         let queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (?, ?)";
         connection.query(queryString, [burgerName, isDevoured], function(err, res){
@@ -15,9 +17,10 @@ var orm = {
             console.log(result)
         })
     },
-    updateOne: function(colToUpdate, newValue, howToFind, valueBeingSearched){
-        let queryString = "UPDATE burgers SET ?? = ? WHERE ?? = ?";
-        connection.query(queryString, [colToUpdate, newValue, howToFind, valueBeingSearched], function(err, res){
+    // function to update a burger. Since only one burger, limited to select col of id
+    updateOne: function(whatToUpdate, newValue, idOfBurger){
+        let queryString = "UPDATE burgers SET ?? = ? WHERE id = ?";
+        connection.query(queryString, [whatToUpdate, newValue, idOfBurger], function(err, res){
             if (err) throw "Error updating burger informatoin. " + err;
             console.log(result)
         });

@@ -29,20 +29,28 @@ var orm = {
          });
     },
     // function to insert a new burger column
-    insertOne: function(table, row1, row2){
+    insertOne: function(table, rowValue1, rowValue2){
         let queryString = "INSERT INTO " + table + "(??, ??) VALUES (?, ?)";
-        connection.query(queryString, [row1.toString(), row2.toString()], function(err, res){
+        connection.query(queryString, [rowValue1.toString(), rowValue2.toString()], function(err, res){
             if (err) throw "Error inserting new burger. " + err;
             cb(res)
             console.log(res)
         })
     },
     // function to update a burger. Since only one burger, limited to select col of id
-    updateOne: function(whatToUpdate, newValue, idOfBurger){
-        let queryString = "UPDATE burgers SET ?? = ? WHERE id = ?";
-        connection.query(queryString, [whatToUpdate, newValue, idOfBurger], function(err, res){
-            if (err) throw "Error updating burger informatoin. " + err;
+    updateOne: function(table, colVals, condition, cb){
+        let queryString = "UPDATE " + table;
+
+        queryString +=  "SET ";
+        queryString += objToSql(colVals);
+        queryString += " WHERE ";
+        queryString += condition;
+
+        console.log(queryString)
+        connection.query(queryString, function(err, res){
+            if (err) throw "Error updating burger information. " + err;
             console.log(result)
+            cb(result)
         });
     }
 };

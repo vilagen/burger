@@ -1,10 +1,20 @@
 var orm = require("../burger/config/orm.js")
 
-// console log all of the items.
-orm.selectAll();
+var burger = {
+    all: function(cb) {
+        orm.selectAll("burgers", function(res) {
+            cb(res);
+        });
+    },
 
-// insert new burger named Whopper
-orm.insertOne("Whopper", "false");
-
-// update one
-orm.updateOne("devoured", "true", "1")
+    create: function(colValue1, colValue2, cb) {
+        orm.inserOne("burgers", colValue1, colValue2, function(res){
+            cb(res)
+        })
+    },
+    update: function(colVals, condition, cb) {
+        orm.updateOne("burgers", colVals, condition, function(res){
+            cb(res)
+        })
+    }
+}

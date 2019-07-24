@@ -29,9 +29,9 @@ var orm = {
          });
     },
     // function to insert a new burger column
-    insertOne: function(table, rowValue1, rowValue2){
+    insertOne: function(table, colValue1, colValue2){
         let queryString = "INSERT INTO " + table + "(??, ??) VALUES (?, ?)";
-        connection.query(queryString, [rowValue1.toString(), rowValue2.toString()], function(err, res){
+        connection.query(queryString, [colValue1.toString(), colValue2.toString()], function(err, res){
             if (err) throw "Error inserting new burger. " + err;
             cb(res)
             console.log(res)

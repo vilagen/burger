@@ -29,9 +29,13 @@ var orm = {
          });
     },
     // function to insert a new burger column
-    insertOne: function(table, colValue1, colValue2){
-        let queryString = "INSERT INTO " + table + "(??, ??) VALUES (?, ?)";
-        connection.query(queryString, [colValue1.toString(), colValue2.toString()], function(err, res){
+    insertOne: function(table, cols, val1, val2){
+        let queryString = "INSERT INTO " + table;
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") VALUES (";
+        queryString += val1 + ", " + val2 + ") "
+        connection.query(queryString, function(err, res){
             if (err) throw "Error inserting new burger. " + err;
             cb(res)
             console.log(res)
@@ -41,7 +45,7 @@ var orm = {
     updateOne: function(table, colVals, condition, cb){
         let queryString = "UPDATE " + table;
 
-        queryString +=  "SET ";
+        queryString +=  " SET ";
         queryString += objToSql(colVals);
         queryString += " WHERE ";
         queryString += condition;

@@ -8,7 +8,7 @@ function objToSql(object) {
     for (var key in object) {
         var value = object[key]
 
-        if (Object.hasOwnProperty.call(ob, key)) {
+        if (Object.hasOwnProperty.call(object, key)) {
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
                 }

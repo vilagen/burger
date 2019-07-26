@@ -53,8 +53,7 @@ var orm = {
         console.log(queryString)
         connection.query(queryString, function(err, res){
             if (err) throw "Error updating burger information. " + err;
-            console.log(result)
-            cb(result)
+            cb(res)
         });
     }
 };

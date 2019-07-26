@@ -1,9 +1,6 @@
 $(function() {
     $(".change-devour").on("click", function(event) {
         var id = $(this).data("id");
-        // var newDevour = $(this).data("newDevour");
-        // console.log(newDevour)
-        // Send PUT request
         $.ajax("/api/burgers/" + id, {
             type: "PUT",
             data: {
@@ -11,7 +8,7 @@ $(function() {
             }
         }).then(
             function() {
-                console.log("Burger is now Devoured!", newDevour);
+                console.log("Burger is now Devoured!");
                 location.reload()
             }
         );
@@ -21,15 +18,13 @@ $(function() {
         event.preventDefault()
 
         var newBurger = {
-            name: $("#makeBurger").val().trim(),
-            devoured: false
+            burger_name: $("#makeBurger").val().trim()
         };
-
         $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
         }).then(function() {
-            console.log("added new burger")
+            console.log(newBurger)
             location.reload();
         });
     })

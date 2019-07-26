@@ -9,9 +9,12 @@ function objToSql(object) {
         var value = object[key]
 
         if (Object.hasOwnProperty.call(object, key)) {
+            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
                 }
+                 // e.g. {name: 'Bacon Cheeseburger'} => ["name='Bacon Cheeseburger'"]
+                // e.g. {devour: true} => ["devour=true"]
                 arr.push(key + "=" + value) 
             }
         }
@@ -29,16 +32,14 @@ var orm = {
          });
     },
     // function to insert a new burger column
-    insertOne: function(table, cols, val1, val2){
-        let queryString = "INSERT INTO " + table;
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") VALUES (";
-        queryString += val1 + ", " + val2 + ") "
+    insertOne: function(table, col1, col2, val1, val2, cb){
+        let queryString = "INSERT INTO " + table + " (" + col1 + ", " + col2 + ") VALUES (" + "'" + val1 + "', " + val2 + ");"
+
+        console.log(queryString)
         connection.query(queryString, function(err, res){
             if (err) throw "Error inserting new burger. " + err;
-            cb(res)
             console.log(res)
+            cb(res)           
         })
     },
     // function to update a burger. Since only one burger, limited to select col of id

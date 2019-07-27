@@ -1,36 +1,59 @@
+<div class = "bg-warning col-sm-12">
+
+<div class = "row justify-content-sm-center">
 <h1>Eat-Da-Burger!!</h1>
+</div>
 
-<ul>
-    {{#each burgers}}
-        {{#unless devoured}}
-            <li>
-            {{burger_name}}
-            <button class ="change-devour" data-id="{{id}}">
-            DEVOUR
-            </button>
-            </li>
-        {{/unless}}
-    {{/each}}
-</ul>
+<div class = "row">
 
-<h2>Burgers Devoured!</h2>
-
-<ul>
-    {{#each burgers}}
-        {{#if devoured}}
-            <li>
-            {{burger_name}}
-            </li>
-        {{/if}}
-    {{/each}}
-</ul>
-
-<h3>Make-Da-Burger!!</h3>
-
-<form class = "create-form">
-    <div class = "form-class">
-    <input type="text" id="makeBurger" name="burger_name"></input>
+    
+    <div class = "col col-sm-4">
+        <h2>Burgers Not Devoured</h2>
+          <ul>
+            {{#each burgers}}
+                {{#unless devoured}}
+                    <li>
+                      {{burger_name}}
+                      <button class ="change-devour" data-id="{{id}}">DEVOUR</button>
+                    </li>
+                {{/unless}}
+            {{/each}}
+          </ul>
     </div>
 
-    <button type="submit">Add Burger</button>
-</form>
+    <div class = "col col-sm-4"></div>
+
+
+    <div class = "col col-sm-4">
+      <h2>Burgers Devoured!</h2>  
+          <ul>
+            {{#each burgers}}
+              {{#if devoured}}
+                  <li>
+                    {{burger_name}}
+                  </li>
+              {{/if}}
+            {{/each}}
+         </ul>
+    </div>
+
+</div>
+
+<div class = "row">
+
+  <div class = "col text-center col-sm-12">
+    <h3>Make-Da-Burger!!</h3>
+
+    <form class = "create-form">
+
+      <div class = "form-class">
+        <input type="text" id="makeBurger" name="burger_name"></input>
+      </div>
+
+      <button type="submit">Add Burger</button>
+
+    </form>
+    </div>
+</div> 
+
+</div>

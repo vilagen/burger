@@ -1,20 +1,27 @@
-<div class = "bg-warning col-sm-12">
+<body class = "bg-warning col-sm-12">
 
-<div class = "row justify-content-sm-center">
-<h1>Eat-Da-Burger!!</h1>
+
+<div class = "row justify-content-sm-center" style = "margin-top: 10px; margin-bottom: 25px">
+<h1 class = "burger">Eat-Da-Burger!!</h1>
 </div>
 
-<div class = "row">
+<div class = "row justify-content-sm-center" style = "margin-bottom: 25px">
+<img src="/assets/img/burger.png" style = "width: 10%; height: auto">
+</div>
 
+
+
+<div class = "row">
     
     <div class = "col col-sm-4">
-        <h2>Burgers Not Devoured</h2>
-          <ul>
+        <h2 class = "text-center">Burgers Not Devoured</h2>
+          <ul class = "list-group" style = "list-style: none">
             {{#each burgers}}
                 {{#unless devoured}}
-                    <li>
+                    <li class = "card-body mx-auto" style = "width: 50%">
+                      <i class = "fas fa-hamburger" style = "my-auto"></i>
                       {{burger_name}}
-                      <button class ="change-devour" data-id="{{id}}">DEVOUR</button>
+                      <button type = "button" class ="btn change-devour bg-danger text-white btn-sm float-right" data-id="{{id}}">DEVOUR</button>
                     </li>
                 {{/unless}}
             {{/each}}
@@ -25,16 +32,16 @@
 
 
     <div class = "col col-sm-4">
-      <h2>Burgers Devoured!</h2>  
-          <ul>
-            {{#each burgers}}
+      <h2 class = "text-center">Burgers Devoured!</h2>  
+        <ul class = "list-group" style = "list-style: none">
+          {{#each burgers}}
               {{#if devoured}}
-                  <li>
-                    {{burger_name}}
+                  <li class = "devoured card-body text-center mx-auto" style = "width: 50%">
+                      {{burger_name}}
                   </li>
               {{/if}}
-            {{/each}}
-         </ul>
+          {{/each}}
+        </ul>
     </div>
 
 </div>
@@ -42,7 +49,7 @@
 <div class = "row">
 
   <div class = "col text-center col-sm-12">
-    <h3>Make-Da-Burger!!</h3>
+    <h3 class = "burger">Make-Da-Burger!!</h3>
 
     <form class = "create-form">
 
@@ -56,4 +63,4 @@
     </div>
 </div> 
 
-</div>
+</body>

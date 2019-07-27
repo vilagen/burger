@@ -17,15 +17,23 @@ $(function() {
     $(".create-form").on("submit", function(event) {
         event.preventDefault()
 
-        var newBurger = {
-            burger_name: $("#makeBurger").val().trim()
-        };
-        $.ajax("/api/burgers", {
-            type: "POST",
-            data: newBurger
-        }).then(function() {
-            console.log(newBurger)
-            location.reload();
-        });
+        let input = $("#makeBurger").val().trim()
+
+        // Prevent burger name being too long
+
+        if(input.length > 20) {
+            alert("Please make your burger 20 characters or less.")
+        } else {
+            var newBurger = {
+                burger_name: $("#makeBurger").val().trim()
+            };
+            $.ajax("/api/burgers", {
+                type: "POST",
+                data: newBurger
+            }).then(function() {
+                console.log(newBurger)
+                location.reload();
+            });
+        }
     })
 })
